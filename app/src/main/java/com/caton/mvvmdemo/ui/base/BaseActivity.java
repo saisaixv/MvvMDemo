@@ -18,15 +18,15 @@ import java.lang.reflect.Type;
  * Created by saisai on 2019/4/22 0022.
  */
 
-public abstract class BaseActivity<V extends ViewDataBinding, VM extends ViewModel & LifecycleObserver> extends AppCompatActivity {
+public abstract class BaseActivity<V extends ViewDataBinding, VM extends ViewModel> extends AppCompatActivity {
 
     private int viewModelId;
     private VM viewModel;
     private ViewDataBinding binding;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         //页面接受的参数方法
         initParam();
@@ -51,7 +51,7 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends ViewMod
         //关联ViewModel
         binding.setVariable(viewModelId,viewModel);
         //让ViewModel拥有View的生命周期感应
-        getLifecycle().addObserver(viewModel);
+//        getLifecycle().addObserver(viewModel);
         //注入RxLifecycle生命周期
 
     }
